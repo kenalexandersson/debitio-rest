@@ -1,11 +1,13 @@
 insert into users_tab values (1, null, null, 'ken.alexandersson@gmail.com', 'ken.alexandersson@gmail.com', 'Ken', 'Alexandersson', 0, null, 0, 'password', null, null, 'kensebense', null);
 insert into users_tab values (2, null, null, 'another.guy@gmail.com', 'another.guy@gmail.com', 'Guy', 'Another', 0, null, 0, 'password', null, null, 'anotherguy', null);
 insert into users_tab values (3, null, null, 'hook@gmail.com', 'hook@gmail.com', 'Hook', 'Hookson', 0, null, 0, 'password', null, null, 'hook', null);
-insert into happening_tab values(1, 'a comment', 'Rover', sysdate, sysdate, 1);
-insert into happening_tab values(2, 'a comment', 'Brewsters', sysdate, sysdate, 1);
-insert into happening_tab values(3, 'a comment', 'Kvitt', sysdate, sysdate, 3);
+insert into happening_tab values(1, 'a comment', 'Rover', sysdate-14, sysdate-14, 1);
+insert into happening_tab values(2, 'a comment', 'Brewsters', sysdate-7, sysdate-7, 1);
+insert into happening_tab values(3, 'a comment', 'Brewdog', sysdate, sysdate, 3);
 insert into debt_tab values(1, 120.00, 'Anagram', null, 1, 1, 2);
 insert into debt_tab values(2, 89.00, 'Piss pale ale', null, 1, 1, 2);
 insert into debt_tab values(3, 78.00, 'Dark surpa', null, 1, 1, 3);
 insert into debt_tab values(4, 85.00, 'Heavenly surprise', null, 1, 2, 3);
-insert into debt_tab values(5, 85.00, 'kvitt brewster', null, 3, 3, 1);
+insert into debt_tab values(5, 85.00, 'Gott 1', null, 3, 3, 1);
+insert into debt_tab values(6, 78.00, 'Gott 2', null, 3, 3, 1);
+insert into debt_tab values(7, 99.00, 'Gott 3', null, 3, 3, 1);

@@ -1,15 +1,7 @@
 package org.kense.debitio.debitiorest.repository.entity;
 
-import com.googlecode.jmapper.annotations.JMapConversion;
-
+import javax.persistence.*;
 import java.math.BigDecimal;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "debt_tab")
@@ -18,10 +10,10 @@ public class Debt {
 	@Id
 	private long id;
 	
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "happening_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "happening_id", insertable=false, updatable=false)
 	private Happening happening;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "from_user_id")
 	private User fromUser;

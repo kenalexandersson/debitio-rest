@@ -1,21 +1,8 @@
 package org.kense.debitio.debitiorest.repository.entity;
 
-import java.time.LocalDate;
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "happening_tab")
@@ -37,8 +24,8 @@ public class Happening {
 	private User owner;
 	private String comment;
 	
-    //@OneToMany(mappedBy = "happening", orphanRemoval = true,  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //private Set<Debt> debtList;
+    @OneToMany(mappedBy = "happening", orphanRemoval = true,  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Debt> debtList;
 
 	public long getId() {
 		return id;
@@ -88,11 +75,11 @@ public class Happening {
 		this.comment = comment;
 	}
 
-//	public Set<Debt> getDebtList() {
-//		return debtList;
-//	}
-//
-//	public void setDebtList(Set<Debt> debtList) {
-//		this.debtList = debtList;
-//	}
+	public Set<Debt> getDebtList() {
+		return debtList;
+	}
+
+	public void setDebtList(Set<Debt> debtList) {
+		this.debtList = debtList;
+	}
 }

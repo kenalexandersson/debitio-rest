@@ -6,14 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface HappeningRepository extends JpaRepository<Happening, Long> {
 
     @Query("select h from Happening h where h.owner.id = :userId")
-    List<Happening> getHappenings(@Param("userId") Long userId);
+    Set<Happening> getHappenings(@Param("userId") Long userId);
 
-    @Query("select h from Happening h")
-    List<Happening> getHappenings();
+    @Query("select h from Happening h order by h.officialDate desc")
+    Set<Happening> getHappenings();
 }

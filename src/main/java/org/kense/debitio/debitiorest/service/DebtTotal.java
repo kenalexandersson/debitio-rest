@@ -3,36 +3,49 @@ package org.kense.debitio.debitiorest.service;
 import org.kense.debitio.debitiorest.repository.entity.User;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
-public class DebtTotal {
+class DebtTotal {
 
-    private User claimingUser;
+    private long claimingUserId;
 
-    private User indebtedUser;
+    private Map<String, BigDecimal> totals = new HashMap<>();
 
-    private BigDecimal total;
-
-    public User getClaimingUser() {
-        return claimingUser;
+    static DebtTotal of(long claimingUserId) {
+        return new DebtTotal(claimingUserId);
     }
 
-    public void setClaimingUser(User claimingUser) {
-        this.claimingUser = claimingUser;
+    private DebtTotal(long claimingUserId) {
+        this.claimingUserId = claimingUserId;
     }
 
-    public User getIndebtedUser() {
-        return indebtedUser;
+    void add(BigDecimal amount, User toUser) {
+
+        BigDecimal current = getCurrentValueForUser(toUser.getUserName());
+        totals.replace(toUser.getUserName(), current.add(amount));
     }
 
-    public void setIndebtedUser(User indebtedUser) {
-        this.indebtedUser = indebtedUser;
+    void subtract(BigDecimal amount, User fromUser) {
+        BigDecimal current = getCurrentValueForUser(fromUser.getUserName());
+        totals.replace(fromUser.getUserName(), current.subtract(amount));
     }
 
-    public BigDecimal getTotal() {
-        return total;
+    public long getClaimingUserId() {
+        return claimingUserId;
     }
 
-    public void setTotal(BigDecimal total) {
-        this.total = total;
+    Map<String, BigDecimal> getTotals() {
+        return totals;
     }
+
+    BigDecimal getTotalFor(User user) {
+        return totals.get(user.getUserName());
+    }
+
+    private BigDecimal getCurrentValueForUser(String username) {
+        totals.putIfAbsent(username, new BigDecimal(0));
+        return totals.get(username);
+    }
+
 }

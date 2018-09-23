@@ -6,14 +6,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface DebtRepository extends JpaRepository<Debt, Long> {
 
     @Query("select d from Debt d where lower(d.fromUser) = lower(:userId) or lower(d.toUser) = lower(:userId)")
-    List<Debt> getDebts(@Param("userId") Long userId);
+    Set<Debt> getDebts(@Param("userId") Long userId);
 
     @Query("select d from Debt d where d.happening.id = :happeningId and (lower(d.fromUser) = lower(:userId) or lower(d.toUser) = lower(:userId))")
-    List<Debt> getDebts(@Param("userId") Long userId, @Param("happeningId") Long happeningId);
+    Set<Debt> getDebts(@Param("userId") Long userId, @Param("happeningId") Long happeningId);
+
+    @Query("select d from Debt d where d.happening.id = :happeningId")
+    Set<Debt> getDebtsForHappening(@Param("happeningId") Long happeningId);
 }

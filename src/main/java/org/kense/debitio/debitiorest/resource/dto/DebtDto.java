@@ -15,6 +15,9 @@ public class DebtDto {
     @JMap("happening")
     private long happeningId;
 
+    @JMap("happening")
+    private String happeningName;
+
     @JMap
     private BigDecimal amount;
 
@@ -41,6 +44,14 @@ public class DebtDto {
 
     public void setHappeningId(long happeningId) {
         this.happeningId = happeningId;
+    }
+
+    public String getHappeningName() {
+        return happeningName;
+    }
+
+    public void setHappeningName(String happeningName) {
+        this.happeningName = happeningName;
     }
 
     public BigDecimal getAmount() {
@@ -78,6 +89,11 @@ public class DebtDto {
     @JMapConversion(from = {"happening"}, to = {"happeningId"})
     public long convertHappeningId(Happening happening) {
         return happening.getId();
+    }
+
+    @JMapConversion(from = {"happening"}, to = {"happeningName"})
+    public String convertHappeningName(Happening happening) {
+        return happening.getHappening();
     }
 
     @JMapConversion(from = {"fromUser"}, to = {"fromUserName"})

@@ -59,6 +59,11 @@
 			<artifactId>jmapper-core</artifactId>
 			<version>1.6.1.CR2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
