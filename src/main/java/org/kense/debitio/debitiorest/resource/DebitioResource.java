@@ -5,6 +5,7 @@ import org.kense.debitio.debitiorest.repository.HappeningRepository;
 import org.kense.debitio.debitiorest.repository.entity.Debt;
 import org.kense.debitio.debitiorest.repository.entity.Happening;
 import org.kense.debitio.debitiorest.resource.dto.DebtDto;
+import org.kense.debitio.debitiorest.resource.dto.DebtTotalsDto;
 import org.kense.debitio.debitiorest.resource.dto.HappeningDto;
 import org.kense.debitio.debitiorest.service.DebtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
-import java.util.Comparator;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -46,9 +44,14 @@ public class DebitioResource {
     }
 
     @GetMapping("/debts/{userId}/totals")
-    public Map<String, BigDecimal> retrieveDebtsTotal(@PathVariable Long userId) {
+    public List<DebtTotalsDto> retrieveDebtsTotal(@PathVariable Long userId) {
 
-        return debtService.getDebtsTotal(userId);
+        List<DebtTotalsDto> debtTotalsDtos = new ArrayList<>();
+
+        Map<String, BigDecimal> debtsTotal = debtService.getDebtsTotal(userId);
+        debtsTotal.forEach((username, amount) -> debtTotalsDtos.add(new DebtTotalsDto(username, amount)));
+
+        return debtTotalsDtos;
     }
 
     @GetMapping("/debts/{userId}/happenings/{happeningId}")
