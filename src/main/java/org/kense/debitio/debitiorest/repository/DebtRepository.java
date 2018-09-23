@@ -13,4 +13,7 @@ public interface DebtRepository extends JpaRepository<Debt, Long> {
 
     @Query("select d from Debt d where lower(d.fromUser) = lower(:userId) or lower(d.toUser) = lower(:userId)")
     List<Debt> getDebts(@Param("userId") Long userId);
+
+    @Query("select d from Debt d where d.happening.id = :happeningId and (lower(d.fromUser) = lower(:userId) or lower(d.toUser) = lower(:userId))")
+    List<Debt> getDebts(@Param("userId") Long userId, @Param("happeningId") Long happeningId);
 }

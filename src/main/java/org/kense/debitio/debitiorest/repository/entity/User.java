@@ -1,5 +1,6 @@
 package org.kense.debitio.debitiorest.repository.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -31,12 +32,11 @@ public class User {
 	private String sms;
 	private String account;
 	@Column(name = "registration_date")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date registrationDate;
+	private LocalDateTime registrationDate;
 	@Column(name = "last_logon")
-	private Date lastLogon;
+	private LocalDateTime lastLogon;
 	@Column(name = "bulletines_date")
-	private Date bulletinesDate;
+	private LocalDateTime bulletinesDate;
 	
 	public User() { 
 		
@@ -119,22 +119,22 @@ public class User {
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	public Date getRegistrationDate() {
+	public LocalDateTime getRegistrationDate() {
 		return registrationDate;
 	}
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(LocalDateTime registrationDate) {
 		this.registrationDate = registrationDate;
 	}
-	public Date getLastLogon() {
+	public LocalDateTime getLastLogon() {
 		return lastLogon;
 	}
-	public void setLastLogon(Date lastLogon) {
+	public void setLastLogon(LocalDateTime lastLogon) {
 		this.lastLogon = lastLogon;
 	}
-	public Date getBulletinesDate() {
+	public LocalDateTime getBulletinesDate() {
 		return bulletinesDate;
 	}
-	public void setBulletinesDate(Date bulletinesDate) {
+	public void setBulletinesDate(LocalDateTime bulletinesDate) {
 		this.bulletinesDate = bulletinesDate;
 	}
 	

@@ -1,5 +1,7 @@
 package org.kense.debitio.debitiorest.repository.entity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -25,20 +27,18 @@ public class Happening {
 	private String happening;
 	
 	@Column(name = "official_date")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date officialDate;
+	private LocalDateTime officialDate;
 	
 	@Column(name = "registration_date")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date registrationDate;
+	private LocalDateTime registrationDate;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User owner;
 	private String comment;
 	
-    @OneToMany(mappedBy = "happening", orphanRemoval = true,  fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Debt> debtList;
+    //@OneToMany(mappedBy = "happening", orphanRemoval = true,  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //private Set<Debt> debtList;
 
 	public long getId() {
 		return id;
@@ -56,19 +56,19 @@ public class Happening {
 		this.happening = happening;
 	}
 
-	public Date getOfficialDate() {
+	public LocalDateTime getOfficialDate() {
 		return officialDate;
 	}
 
-	public void setOfficialDate(Date officialDate) {
+	public void setOfficialDate(LocalDateTime officialDate) {
 		this.officialDate = officialDate;
 	}
 
-	public Date getRegistrationDate() {
+	public LocalDateTime getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(LocalDateTime registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 
@@ -88,11 +88,11 @@ public class Happening {
 		this.comment = comment;
 	}
 
-	public Set<Debt> getDebtList() {
-		return debtList;
-	}
-
-	public void setDebtList(Set<Debt> debtList) {
-		this.debtList = debtList;
-	}
+//	public Set<Debt> getDebtList() {
+//		return debtList;
+//	}
+//
+//	public void setDebtList(Set<Debt> debtList) {
+//		this.debtList = debtList;
+//	}
 }

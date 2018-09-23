@@ -1,5 +1,7 @@
 package org.kense.debitio.debitiorest.repository.entity;
 
+import com.googlecode.jmapper.annotations.JMapConversion;
+
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
@@ -16,7 +18,7 @@ public class Debt {
 	@Id
 	private long id;
 	
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "happening_id")
 	private Happening happening;
 	
@@ -74,6 +76,4 @@ public class Debt {
 	public void setHarvest(String harvest) {
 		this.harvest = harvest;
 	}
-	
-	
 }
